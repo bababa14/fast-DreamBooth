@@ -263,9 +263,9 @@ fast-DreamBooth/
 
 ## 📞 Контакты
 
-**Автор:** Антон Зеленов
-- 📧 Email: tixset@gmail.com
-- 🐙 GitHub: https://github.com/tixset/fast-DreamBooth
+- **Автор:** Антон Зеленов
+- **Email:** tixset@gmail.com
+- **GitHub:** https://github.com/tixset/fast-DreamBooth
 
 **Нашли проблему?** Создайте [Issue](https://github.com/tixset/fast-DreamBooth/issues)
 
@@ -285,3 +285,4 @@ fast-DreamBooth/
 **Создано с ❤️ для русскоязычного сообщества Stable Diffusion**
 
 **Удачи в создании уникальных AI-моделей! 🎨🚀**
+

